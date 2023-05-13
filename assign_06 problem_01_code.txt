@@ -1,0 +1,93 @@
+//Rawan Ehab Mahmoud
+//202106048
+package BankSystem;
+    class Human {
+        private String name;
+        private int age;
+        private boolean IsFemale;
+        Human(String name, int age, boolean IsFemale) {
+            this.name=name;
+            this.age=age;
+            this.IsFemale=IsFemale;
+        }
+        void printData() {
+            System.out.println("Enter your name: " + name);
+            System.out.println("Enter your age: " + age);
+            System.out.println("Enter your gender: " + IsFemale);
+        }
+        final void Greet() {
+            System.out.println("Good Morning");
+        }
+    }
+
+package BankSystem;
+    class Employee extends Human {
+        private double salary;
+        private String department;
+
+        Employee(String name, int age, boolean IsFemale, double salary, String department) {
+            super(name, age, IsFemale);
+            this.salary = salary;
+            this.department = department;
+        }
+
+        @Override
+        void printData() {
+            super.printData();
+            System.out.println("Enter your salary: " + salary);
+            System.out.println("Enter your department: " + department);
+        }
+
+        double getSalary() {
+            return salary;
+        }
+
+        String getDepartment() {
+            return department;
+        }
+    }
+	
+package BankSystem;
+    class Customer extends Human {
+        private String ssn;
+        private String address;
+
+        Customer(String name, int age, boolean IsFemale, String ssn, String address) {
+            super(name, age, IsFemale);
+            this.ssn = ssn;
+            this.address = address;
+
+        }
+    }
+	
+package BankSystem;
+    final class BankAccount {
+        private double balance;
+
+        double getBalance() {
+            return this.balance + balance*0.1;
+        }
+
+        void setBalance(double balance) {
+            if (balance >= 0 && balance <= 1_000_000) {
+                this.balance += balance;
+            }
+        }
+
+        void setBalance(double balance, double taxPercent) {
+            double taxAmount = balance * (taxPercent / 100);
+            this.balance += balance - taxAmount;
+        }
+    }
+	
+package BankSystem;
+    public class Main {
+        public static void main(String[] args) {
+            Employee sc = new Employee("rawan", 19, true, 10.000, "IT");
+            Customer rc = new Customer("ehab", 30, false, "546565465", "cairo");
+
+            BankAccount bankAccount = new BankAccount();
+            bankAccount.setBalance(1000.0);
+            bankAccount.setBalance(2000.0, 10.0);
+        }
+    }

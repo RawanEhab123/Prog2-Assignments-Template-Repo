@@ -1,0 +1,57 @@
+//Rawan Ehab Mahmoud
+//202106048
+public class BankAccount {
+        private double balance;
+        private String username;
+        private String bankname;
+        private static final String country = "Egypt";
+        private static int numOfUsers = 0;
+        private static int numOfCalls = 0;
+
+        public BankAccount() {
+            balance=0;
+            username="";
+            bankname="";
+            numOfUsers++;
+            System.out.println("Your BankAccount is created");
+        }
+
+        public BankAccount(double initialBalance, String username, String bankname) {
+            balance = initialBalance;
+            this.username=username;
+            this.bankname=bankname;
+            numOfUsers++;
+            System.out.println("Your BankAccount is created");
+        }
+
+        public void deposite(double amount) {
+            balance += amount;
+            numOfCalls++;
+            System.out.println(amount + " deposited into your account");
+        }
+
+        public void withdraw(double amount) {
+            if (balance >= amount) {
+                balance -= amount;
+                numOfCalls++;
+                System.out.println(amount + "withdrawn from your account");
+            } else {
+                System.out.println("Cannot withdraw " + amount);
+            }
+        }
+
+        public static void main(String[] args) {
+            BankAccount account1 = new BankAccount();
+            BankAccount account2 = new BankAccount(99999, "rawan", "Bank of Egypt");
+
+            account1.deposite(555);
+            account2.withdraw(444);
+
+            System.out.println("Balance of account1:" + account1.balance);
+            System.out.println("Balance of account2:" + account2.balance);
+
+            System.out.println("Number of users:" + BankAccount.numOfUsers);
+            System.out.println("Number of calls to Deposit():" + account1.numOfCalls);
+            System.out.println("Number of calls to Withdraw():" + account2.numOfCalls);
+        }
+    }
